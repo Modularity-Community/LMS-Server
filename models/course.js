@@ -1,8 +1,7 @@
-const { query } = require("express");
 const conn = require("../connection");
 const { responseData, responseMessage } = require("../utils/response-handler");
 
-exports.insert = (response, statement, data) => {
+exports.insertCourse = (response, statement, data) => {
   conn.query(statement, data, (err, rows, fields) => {
     if (err) {
       console.log(err.message);
@@ -13,7 +12,7 @@ exports.insert = (response, statement, data) => {
   });
 };
 
-exports.getAll = (response, statement, data) => {
+exports.getAllCourse = (response, statement, data) => {
   conn.query(statement, data, (err, rows, fields) => {
     if (err) {
       console.log(err.message);
@@ -27,7 +26,7 @@ exports.getAll = (response, statement, data) => {
   });
 };
 
-exports.update = (response, searchStatement, updateStatement, id, data) => {
+exports.updateCourse = (response, searchStatement, updateStatement, id, data) => {
   conn.query(searchStatement, id, (err, rows, field) => {
     if (err) {
       return responseMessage(response, 500, "internal error");
@@ -47,7 +46,7 @@ exports.update = (response, searchStatement, updateStatement, id, data) => {
   });
 };
 
-exports.delete = (response, searchStatement, deleteStatement, id) => {
+exports.deleteCourse = (response, searchStatement, deleteStatement, id) => {
   conn.query(searchStatement, id, (err, rows, field) => {
     if (err) {
       return responseMessage(response, 500, "internal error");
