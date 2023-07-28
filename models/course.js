@@ -46,3 +46,24 @@ exports.update = (response, searchStatement, updateStatement, id, data) => {
     });
   });
 };
+
+exports.delete = (response, searchStatement, deleteStatement, id) => {
+  conn.query(searchStatement, id, (err, rows, field) => {
+    if (err) {
+      return responseMessage(response, 500, "internal error");
+    }
+
+    if (!rows?.length) {
+      return responseMessage(response, 404, "course tidak ditemukan");
+    }
+
+    conn.query(deleteStatement,  id, (err, rows, field) => {
+      if (err) {
+        return responseMessage(response, 500, "internal error");
+      }
+
+      responseMessage(response, 200, "berhasil update course");
+    });
+  });
+};
+
