@@ -12,8 +12,8 @@ exports.insertCourse = (response, statement, data) => {
   });
 };
 
-exports.getAllCourse = (response, statement, data) => {
-  conn.query(statement, data, (err, rows, fields) => {
+exports.getAllCourse = (response, statement) => {
+  conn.query(statement, (err, rows, fields) => {
     if (err) {
       console.log(err.message);
       return responseMessage(response, 500, "internal error");

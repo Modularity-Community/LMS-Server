@@ -7,7 +7,14 @@ const {
 
 exports.createData = (req, res) => {
   const data = { ...req.body };
-  const querySql = 'INSERT INTO corse set ?'
+  const querySql = 'INSERT INTO course set ?'
 
   insertCourse(res,querySql,data)
 };
+
+exports.readData = (req,res)=>{
+  const querySql = 'SELECT * FROM course'
+
+  getAllCourse(res,querySql)
+}
+
