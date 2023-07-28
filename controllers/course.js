@@ -7,21 +7,29 @@ const {
 
 exports.createData = (req, res) => {
   const data = { ...req.body };
-  const querySql = 'INSERT INTO course set ?'
+  const querySql = "INSERT INTO course set ?";
 
-  insertCourse(res,querySql,data)
+  insertCourse(res, querySql, data);
 };
 
-exports.readData = (req,res)=>{
-  const querySql = 'SELECT * FROM course'
+exports.readData = (req, res) => {
+  const querySql = "SELECT * FROM course";
 
-  getAllCourse(res,querySql)
-}
+  getAllCourse(res, querySql);
+};
 
-exports.updateData = (req,res)=>{
+exports.updateData = (req, res) => {
   const data = { ...req.body };
-  const querySearch = 'SELECT * FROM course where id'
-  const queryUpdate = 'UPDATE course SET? WHERE id = ?'
+  const querySearch = "SELECT * FROM course where id";
+  const queryUpdate = "UPDATE course SET? WHERE id = ?";
 
-  getAllCourse(res,querySearch,queryUpdate,req.params.id,data)
-}
+  updateCourse(res, querySearch, queryUpdate, req.params.id, data);
+};
+
+exports.deleteData = (req, res) => {
+  const data = { ...req.body };
+  const querySearch = "SELECT * FROM course where id";
+  const queryDelete = "DELETE FROM course WHERE id = ?";
+
+  deleteCourse(res, querySearch, queryDelete, req.params.id);
+};
