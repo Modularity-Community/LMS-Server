@@ -12,14 +12,14 @@ exports.createData = (req, res) => {
   insertCourse(res, querySql, data);
 };
 
-exports.readAllData = (req, res) => {
+exports.readData = (req, res) => {
   const querySql = "SELECT * FROM course";
 
   getAllCourse(res, querySql);
 };
-
-exports.readDataById = (req, res) => {
-  const id = req.params.id;
+exports.readData = (req, res) => {
+  const id = req.params.nim;
+  
   const querySql = `SELECT * FROM course WHERE id = ${id}`;
 
   getAllCourse(res, querySql);

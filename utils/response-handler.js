@@ -1,20 +1,20 @@
 const { response } = require("express");
 
-const responseData = function (response, statusCode, values) {
+const responseData = function (response, statusCode, values,status) {
   var data = {
-    success: true,
+    status: status,
     data: values,
   };
   response.status(statusCode, values).json(data);
   response.end;
 };
 
-const responseMessage = function (response, statusCode, message) {
+const responseMessage = function (response, statusCode, message,status) {
   var data = {
-    success: true,
+    statu: status,
     message: message,
   };
-  response.status(statusCode, values).json(data);
+  response.status(statusCode).json(data);
   response.end;
 };
 

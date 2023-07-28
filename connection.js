@@ -4,7 +4,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "modularity-lms",
+  database: "modularity_lms",
 });
 
 module.exports = db

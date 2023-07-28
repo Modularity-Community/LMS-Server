@@ -4,17 +4,14 @@ const {
   readDataById,
   updateData,
   deleteData,
-} = require("../controllers/bootcamp-controller");
+} = require("../controllers/courseController");
 const express = require("express");
 const router = express.Router();
 
-router.route("/")
-      .post(createData)
-      .get(readData);
-
-router.route("/:id")
-      .get(readDataById)
-      .put(updateData)
-      .delete(deleteData);
+router.post("/", createData);
+router.get("/", readData);
+router.get("/:id", readDataById);
+router.update("/:id", updateData);
+router.delete("/:id", deleteData);
 
 module.exports = router;
