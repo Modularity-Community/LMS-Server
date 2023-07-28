@@ -18,3 +18,10 @@ exports.readData = (req,res)=>{
   getAllCourse(res,querySql)
 }
 
+exports.updateData = (req,res)=>{
+  const data = { ...req.body };
+  const querySearch = 'SELECT * FROM course where id'
+  const queryUpdate = 'UPDATE course SET? WHERE id = ?'
+
+  getAllCourse(res,querySearch,queryUpdate,req.params.id,data)
+}
