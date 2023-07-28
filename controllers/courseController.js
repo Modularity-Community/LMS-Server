@@ -3,7 +3,7 @@ const {
   getAllCourse,
   updateCourse,
   deleteCourse,
-} = require("../models/course");
+} = require("../models/courseModel");
 
 exports.createData = (req, res) => {
   const data = { ...req.body };
