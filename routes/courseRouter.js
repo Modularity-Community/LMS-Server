@@ -4,5 +4,6 @@ const router = express.Router();
 
 router.get("/", courseContoller.getListCourse);
 router.get("/:courseId", courseContoller.getListCourseById);
+router.post("/", courseContoller.insertCourse);
 
 module.exports = router;
