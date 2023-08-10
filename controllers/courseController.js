@@ -1,42 +1,18 @@
-const {
-  insertCourse,
-  getAllCourse,
-  updateCourse,
-  deleteCourse,
-} = require("../models/courseModel");
+const db = require("../connection");
+const response = require("../utils/responseHandler");
 
-exports.createData = (req, res) => {
-  const data = { ...req.body };
-  const querySql = "INSERT INTO course set ?";
-
-  insertCourse(res, querySql, data);
-};
-
-exports.readData = (req, res) => {
-  const querySql = "SELECT * FROM course";
-
-  getAllCourse(res, querySql);
-};
-exports.readData = (req, res) => {
-  const id = req.params.nim;
-  
-  const querySql = `SELECT * FROM course WHERE id = ${id}`;
-
-  getAllCourse(res, querySql);
-};
-
-exports.updateData = (req, res) => {
-  const data = { ...req.body };
-  const querySearch = "SELECT * FROM course WHERE id = ?";
-  const queryUpdate = "UPDATE course SET? WHERE id = ?";
-
-  updateCourse(res, querySearch, queryUpdate, req.params.id, data);
-};
-
-exports.deleteData = (req, res) => {
-  const data = { ...req.body };
-  const querySearch = "SELECT * FROM course WHER id=?";
-  const queryDelete = "DELETE FROM course WHERE id = ?";
-
-  deleteCourse(res, querySearch, queryDelete, req.params.id);
+exports.getListCourse = (req, res) => {
+  const sql =
+    "SELECT course.name as courseName, course.description,course.thumbnail,course.category_id,course.user_id, category.category,users.name FROM `course` INNER JOIN category ON course.category_id = category.id INNER JOIN users on course.user_id = users.id";
+  db.query(sql, (err, fields) => {
+    if (err) {
+      response.responseMessage(res, 500, "internal server error");
+      return;
+    }
+    if (fields.length === 0) {
+      response.responseMessage(res, 404, "data course not found");
+      return;
+    }
+    response.responseData(res, 200, fields, "success");
+  });
 };
