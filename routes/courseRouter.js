@@ -1,17 +1,11 @@
-const {
-  createData,
-  readData,
-  readDataById,
-  updateData,
-  deleteData,
-} = require("../controllers/courseController");
+const courseContoller = require("../controllers/courseController");
 const express = require("express");
 const router = express.Router();
 
-router.post("/", createData);
-router.get("/", readData);
-router.get("/:id", readDataById);
-router.update("/:id", updateData);
-router.delete("/:id", deleteData);
+router.get("/", courseContoller.getListCourse);
+router.get("/:courseId", courseContoller.getListCourseById);
+router.post("/", courseContoller.insertCourse);
+router.put("/:courseId", courseContoller.updateCourse);
+router.delete("/:courseId", courseContoller.deleteCourse);
 
 module.exports = router;
