@@ -96,6 +96,21 @@ exports.updateCourse = (req, res) => {
       );
     }
     console.log(fields);
-    response.responseMessage(res, 200,"Berhasil Update Data");
+    response.responseMessage(res, 200, "Berhasil Update Data");
+  });
+};
+
+exports.deleteCourse = (req, res) => {
+  const id = req.params.courseId;
+  const sql = "DELETE FROM course WHERE id = ?";
+  db.query(sql, [id], (err, fields) => {
+    if (err) {
+      response.internalError(res);
+    }
+    if (fields.affectedRows === 0) {
+      response.responseMessage(res, 400, `data ${id} tidak ditemukan`);
+    }
+
+    response.responseMessage(res, 200, "Berhasil Hapus");
   });
 };

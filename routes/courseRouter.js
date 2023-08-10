@@ -6,5 +6,6 @@ router.get("/", courseContoller.getListCourse);
 router.get("/:courseId", courseContoller.getListCourseById);
 router.post("/", courseContoller.insertCourse);
 router.put("/:courseId", courseContoller.updateCourse);
+router.delete("/:courseId", courseContoller.deleteCourse);
 
 module.exports = router;
