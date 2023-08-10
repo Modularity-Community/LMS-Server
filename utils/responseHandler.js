@@ -1,6 +1,6 @@
 const { response } = require("express");
 
-const responseData = function (response, statusCode, values,status) {
+const responseData = function (response, statusCode, values, status) {
   var data = {
     status: status,
     data: values,
@@ -9,13 +9,25 @@ const responseData = function (response, statusCode, values,status) {
   response.end;
 };
 
-const responseMessage = function (response, statusCode, message,status) {
+const responseMessage = function (response, statusCode, message, status) {
   var data = {
-    statu: status,
+    status: status,
     message: message,
   };
   response.status(statusCode).json(data);
   response.end;
 };
 
-module.exports = { responseData, responseMessage };
+const internalError = function (response) {
+  var data = {
+    status: 500,
+    message: "internal server error",
+  };
+  response.status(500).json(data);
+  response.end;
+};
+module.exports = {
+  responseData,
+  responseMessage,
+  internalError,
+};
